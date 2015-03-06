@@ -1,0 +1,9 @@
+// Media query mixin
+
+@function gradient($color-start: #fff, $color-end: #000, $deg: 0deg){
+  @return linear-gradient($deg, $color-end 0%, $color-start 100%);
+}
+
+@function auto-gradient($color: #069, $percent: 7.5%, $deg: 0deg){
+  @return gradient(lighten($color, $percent), darken($color, $percent), $deg);
+}

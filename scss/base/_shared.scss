@@ -1,0 +1,48 @@
+
+
+// Commonly used classes
+%clearfix{
+    zoom: 1; /* IE < 8 */
+
+	&:before,
+	&:after {
+	  content: ".";
+	  display: block;
+	  height: 0;
+	  overflow: hidden;
+	}
+	&:after {
+	    clear: both;
+	}
+}
+%ninja{
+	display: none !important;
+	visibility: hidden;
+}
+
+
+.content{
+	@extend %clearfix;
+	max-width: $max-width;
+	margin: 0 auto;
+}
+
+
+.fr{
+	float: right;
+}
+
+.fl{
+	float: left;
+}
+
+.center{
+	text-align: center;
+}
+
+.margin{
+	padding: 0 1em;
+}
+.no-margin{
+	margin: 0 !important;
+}
