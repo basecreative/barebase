@@ -1,5 +1,6 @@
 # barebase
 Flat boilerplate we use on every build. Work in continuous progress.
+
 This is a good starting point for every single project. It includes some core markup and styles besides some useful libraries. Everything can be easlily removed from the main file so it doesn't get into the compiled file.
 
 ## Sass

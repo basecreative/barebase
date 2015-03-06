@@ -1,15 +1,17 @@
 
 
-*,
-*:before,
-*:after{
-	box-sizing: border-box;
+*{
+	&:before,
+	&:after{
+		box-sizing: border-box;
+	}
 }
 
 
 /* 
 
 Modernizr stuff needed for production
+Write it down as you use stuff.
 
 - HTML5 Shiv
 - SVG
@@ -37,6 +39,7 @@ Modernizr stuff needed for production
 @import "objects/header";
 @import "objects/nav";
 @import "objects/footer";
+
 
 // Add layouts for specific templates
 //@import "layout/home";
