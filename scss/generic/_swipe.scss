@@ -1,17 +1,19 @@
-.swipe {
-	overflow: hidden;
-	visibility: hidden;
-	position: relative;
-}
-.swipe-wrap {
-	overflow: hidden;
-	position: relative;
-
-	> div {
-		float:left;
-		width:100%;
+.js{
+	.swipe {
+		overflow: hidden;
+		visibility: hidden;
 		position: relative;
-		text-align: center;
+	}
+	.swipe-wrap {
+		overflow: hidden;
+		position: relative;
+
+		> div {
+			float:left;
+			width:100%;
+			position: relative;
+			text-align: center;
+		}
 	}
 }
 
