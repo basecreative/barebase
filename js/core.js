@@ -12,8 +12,6 @@
 
 
 
-
-
 // Form validation (optional)
 // @codekit-prepend "vendor/polyfiller.js";
 
@@ -21,15 +19,41 @@
 // @codekit-prepend "vendor/swipe.js";
 
 
+// Choose between no jQuery or jQuery depending on your needs
 
-// jQuery stuff
-$(function(){
+// No jQuery stuff
+// @codekit-prepend "nojQuery/main.js";
+ready(function(){		
 
+	// Toggle nav
+	document.querySelector(".nav-toggle-menu").addEventListener("click", function(event){
+		(event.preventDefault) ? event.preventDefault() : event.returnValue = false; 
+		var theTarget = document.querySelector(".nav-target-menu");
 
-	// Acvtivate form validation (polyfiller.js)
-	webshim.activeLang('en-GB');
- 	webshim.polyfill('forms forms-ext');
-
-
+		if(theTarget !== undefined){
+			// Use the active classes to change the style of both elements with CSS
+			this.classList.toggle('active');
+			theTarget.classList.toggle('active');
+		}
+	});
 
 });
+
+
+
+// jQuery stuff
+// $(function(){
+
+	// Acvtivate form validation (polyfiller.js)
+	// webshim.activeLang('en-GB');
+ 	// webshim.polyfill('forms forms-ext');
+
+
+ 	// Navigation toggle
+	// $('.nav-toggle-menu').click(function(e) {
+	// 	e.preventDefault();
+	// 	$(this).toggleClass('active');
+	// 	$('.nav-target-menu').toggleClass('active');
+	// });
+
+// });
