@@ -5,7 +5,14 @@
 	@extend %clearfix;
 }
 
+.nav-toggle-menu{
+	float: right;
 
+	.is-vishidden{display: none;}
 
-
-
+	&:before{
+		content:'\2630';
+		font-weight: 800;
+		font-size: 2em;
+	}
+}

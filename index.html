@@ -15,36 +15,47 @@
 <body>
 	<header class="header" role="banner">
 
-		<a href="/" class="logo">
-			<picture>
-				<source src="logo.svg" type="image/svg+xml">
-				<img
-					sizes="100vw" 
-					srcset="http://placeskull.com/150/75 150w, http://placehold.it/300x150 300w"
-					src="http://placehold.it/150x75" alt="Barebase">
-			</picture>
-		</a>
+		<div class="wrapper">
 
-		<a href="#navref" class="nav-toggle nav-toggle-menu"><span class="is-vishidden">Menu</span></a>
-		
-		<nav class="nav nav-target-menu" id="navref" role="nav">
-			<ul>
-				<li><a href="#">Item</a></li>
-				<li><a href="#">Item</a></li>
-				<li><a href="#">Item</a></li>
-				<li><a href="#">Item</a></li>
-				<li><a href="#">Item</a></li>
-			</ul>
-		</nav>
+			<a href="/" class="logo">
+				<picture>
+					<source src="logo.svg" type="image/svg+xml">
+					<img
+						sizes="(min-width: 30em) 150px,
+							100vw" 
+						srcset="http://placeskull.com/150/75 150w, http://placehold.it/300x150 300w"
+						src="http://placehold.it/150x75" alt="Barebase">
+				</picture>
+			</a>
+
+			<a href="#navref" class="nav-toggle nav-toggle-menu"><span class="is-vishidden">Menu</span></a>
+			
+			<nav class="nav nav-target-menu" id="navref" role="navigation">
+				<ul>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+				</ul>
+			</nav>
+			
+		</div>
 
 	</header>
 	
 	<main role="main">
-		<h1>Lorem ipsum</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, neque nihil magnam quo non ad qui, quos totam! Optio animi doloremque pariatur architecto, dicta officia doloribus voluptates suscipit maxime reprehenderit.</p>
+		<div class="wrapper">
+			<h1>Lorem ipsum</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, neque nihil magnam quo non ad qui, quos totam! Optio animi doloremque pariatur architecto, dicta officia doloribus voluptates suscipit maxime reprehenderit.</p>
+		</div>
 	</main>
 
 	<footer class="footer" role="contentinfo">
+		<div class="wrapper">
+			<div class="copyright">&copy;domain.com</div>
+			<div class="madeby">Website by Base Creative</div>
+		</div>
 	</footer>
 </body>
 </html>
