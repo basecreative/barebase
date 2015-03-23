@@ -1,0 +1,42 @@
+/* testing */
+body {
+	color: black;
+	height: auto;
+
+	background:#f0f0f0;
+
+	border-radius:10px;
+	
+	font-family: sans-serif;
+
+}
+
+
+
+
+p {
+	transition: all 1s ease;
+}
+
+.pink {
+	color: hotpink;
+}
+
+
+@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+  body {
+    background: #ccc;
+  }
+}
+
+@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+  p {
+    background: #f0f0f0;
+  }
+}
+
+@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
+  p {
+    font-weight: 700;
+  }
+}
