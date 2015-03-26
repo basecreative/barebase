@@ -5,66 +5,56 @@ var mozjpeg = require('imagemin-mozjpeg');
 	// Project configuration.
 	grunt.initConfig({
 
-     pkg: grunt.file.readJSON('package.json'),
-     
+	    pkg: grunt.file.readJSON('package.json'),
+	     
 	     // ***** CONFIG
 	    sass: {
-				dist: {
-					options: {
-						style: 'nested'
-					},
-					files: {
-						'src/css/style.css': 'src/scss/style.scss'
-					}
-				} 
+			dist: {
+				options: {
+					style: 'nested'
+				},
+				files: {
+					'src/css/style.css': 'src/scss/style.scss'
+				}
+			} 
 		},
-
 
 		autoprefixer: {
-			
 			single_file: {
-		      options: {
-		        browsers: ['last 5 versions', 'ie 8', 'ie 9']
-		      },
-		      src: 'src/css/style.css',
-		      dest: 'src/css/style.css'
+		    	options: {
+		        	browsers: ['last 5 versions', 'ie 8', 'ie 9']
+		      	},
+		      	src: 'src/css/style.css',
+		      	dest: 'src/css/style.css'
 		    }
-
 		},
-
-
 
 		concat: {
 			dist: {
 				src: [
-					'src/js/*.js',  
+					['src/js/vendor/*.js', 'src/js/core.js'],  
 					'src/js/core.js'  
 				],
-				dest: 'src/js/core.min.js',
+				dest: 'src/js/core.concat.js',
 			}
 		},
 
-
 		svgmin: {
 	        options: {
-	            plugins: [
-	                {
+	            plugins: [{
 	                    removeViewBox: false
-	                }, {
+	                },{
 	                    removeUselessStrokeAndFill: false
-	                }
-	            ]
+	            }]
 	        },
 	        dist: {
 	            files: {
 	            // Dictionary of files
 		      	// Need to explicitly list all image files and destination
-	                'src/img/image.svg': 'src/image.svg'
+	                'dist/img/image.svg': 'src/image.svg'
 	            }
 	        }
 	    },	
-
-
 
 		imagemin: {                       
 		    dynamic: {                          // Another target
@@ -72,31 +62,28 @@ var mozjpeg = require('imagemin-mozjpeg');
 			        optimizationLevel: 3,
 			        svgoPlugins: [{ removeViewBox: false }],
 			        use: [mozjpeg()]
-			     },
+			    },
 
-		      files: [{
-		        expand: true,                   // Enable dynamic expansion
-		        cwd: 'src/img/',                // Src matches are relative to this path
-		        src: ['**/*.{png,jpg,gif}'],   	// Actual patterns to match
-		        dest: 'dist/img/'               // Destination path prefix
-		      }]
+		      	files: [{
+		        	expand: true,                   // Enable dynamic expansion
+		        	cwd: 'src/img/',                // Src matches are relative to this path
+		        	src: ['**/*.{png,jpg,gif}'],   	// Actual patterns to match
+		        	dest: 'dist/img/'               // Destination path prefix
+		    	}]
 		    }
-		  },
-
-
-	
+		},
 
 
 		modernizr: {
 		    dist: {
-		        "devFile" : "src/js/vendor/modernizr.js",
-		        "outputFile" : "src/js/modernizr-custom.js",
+		        "devFile" : "src/js/modernizr.dev.js",
+		        "outputFile" : "src/js/vendor/modernizr.custom.js",
 
 		        "extra" : {
 		            "shiv" : true,
 		            "printshiv" : false,
 		            "load" : true,
-		            "mq" : false,
+		            "mq" : true,
 		            "cssclasses" : true
 		        },
 		        "extensibility" : {
@@ -116,19 +103,17 @@ var mozjpeg = require('imagemin-mozjpeg');
 		        "matchCommunityTests" : false,
 		        "customTests" : []
 		    }
-
 		},
-
 
 		combine_mq: {
 		    new_filename: {
 		        options: {
-		                beautify: true
+		            beautify: true
 		        },
-		      src: 'src/css/style.css',
-		      dest: 'dist/css/style.css'
+		    	src: 'src/css/style.css',
+		    	dest: 'src/css/style.css'
 		    }
-		  },
+		},
 
 		criticalcss: {
 	        custom: {
@@ -142,10 +127,10 @@ var mozjpeg = require('imagemin-mozjpeg');
 	                ignoreConsole: false
 	            }
 	        }
-    	},
+		},
 
 
-    	cssmin: {
+		cssmin: {
 		  target: {
 		    files: [{
 		      expand: true,
@@ -159,13 +144,19 @@ var mozjpeg = require('imagemin-mozjpeg');
 
 		uglify: {
 			build: {
-				src: 'src/js/core.js',
-				dest: 'src/js/core.min.js'
+				src: 'src/js/core.concat.js',
+				dest: 'dist/js/core.min.js'
 			}
 		},
 
-
-
+		copy: {
+			main: {
+				files: [
+					// includes files within path and its sub-directories
+					{expand: true, src: ['**'], dest: 'dest/'},
+				],
+			},
+		},
 
 		browserSync: {
 		  default_options: {
@@ -188,6 +179,16 @@ var mozjpeg = require('imagemin-mozjpeg');
 
 	    watch: {
 
+	     		html: {
+					files: ['src/*.html', 'src/*/*.html'],
+					tasks: ['copy'],
+					options: {
+						spawn: false,
+						livereload: true,
+					},
+
+				},
+
 	     		scripts: {
 					files: ['src/js/*.js', 'src/js/*/*.js'],
 					tasks: ['concat', 'uglify'],
@@ -209,34 +210,30 @@ var mozjpeg = require('imagemin-mozjpeg');
 
 	     },
 
-
-     
-     });
-  
-    //*****  PLUGINS
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-svgmin');
-    grunt.loadNpmTasks('grunt-browser-sync');
-    grunt.loadNpmTasks('grunt-modernizr');
-    grunt.loadNpmTasks('grunt-criticalcss');
-    grunt.loadNpmTasks('grunt-combine-mq');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-
-
-
  
-    //***** TASKS 
+	});
 
-    grunt.registerTask('dev', ['browserSync', 'watch']);
 
-   	grunt.registerTask('deploy', ['combine_mq', 'imagemin',  'modernizr', 'cssmin']);
+	//*****  PLUGINS
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-autoprefixer');
+	grunt.loadNpmTasks('grunt-contrib-imagemin');
+	grunt.loadNpmTasks('grunt-svgmin');
+	grunt.loadNpmTasks('grunt-browser-sync');
+	grunt.loadNpmTasks('grunt-modernizr');
+	grunt.loadNpmTasks('grunt-criticalcss');
+	grunt.loadNpmTasks('grunt-combine-mq');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
-   	
+
+
+	//***** TASKS 
+	grunt.registerTask('default', ['browserSync', 'watch']);
+	grunt.registerTask('deploy', ['combine_mq', 'imagemin',  'modernizr', 'cssmin', 'concat', 'uglify']);
 
   
 };

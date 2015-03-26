@@ -1,42 +1,45 @@
-/* testing */
-body {
-	color: black;
-	height: auto;
 
-	background:#f0f0f0;
 
-	border-radius:10px;
-	
-	font-family: sans-serif;
-
+*{
+	&:before,
+	&:after{
+		box-sizing: border-box;
+	}
 }
 
 
+/* 
+
+Modernizr stuff needed for production
+Write it down as you use stuff.
+
+- HTML5 Shiv
+- SVG
+- CSS Transforms
+
+*/
 
 
-p {
-	transition: all 1s ease;
-}
+@import "default";
+@import "mixins";
 
-.pink {
-	color: hotpink;
-}
+@import "generic/normalize";
+
+@import "base/main";
+@import "base/shared";
+@import "base/headings";
+@import "base/paragraph";
+@import "base/quote";
+@import "base/links";
+@import "base/lists";
+@import "base/forms";
+@import "base/code";
+@import "base/table";
+
+@import "objects/header";
+@import "objects/nav";
+@import "objects/footer";
 
 
-@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
-  body {
-    background: #ccc;
-  }
-}
-
-@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
-  p {
-    background: #f0f0f0;
-  }
-}
-
-@media all and (max-width: 699px) and (min-width: 520px), (min-width: 1151px) {
-  p {
-    font-weight: 700;
-  }
-}
+// Add layouts for specific templates
+//@import "layout/home";
