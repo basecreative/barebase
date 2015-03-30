@@ -9,12 +9,24 @@ var mozjpeg = require('imagemin-mozjpeg');
 	     
 	     // ***** CONFIG
 	    sass: {
-			dist: {
+			dev: {
 				options: {
-					style: 'compressed'
+					style: 'expanded',
+					cacheLocation: 'dist/.sass-cache'
 				},
 				files: {
-					'src/css/style.css': 'src/scss/style.scss'
+					'dist/css/style.css': 'src/scss/style.scss'
+				}
+			},
+			dist: {
+				options: {
+					style: 'compressed',
+					cacheLocation: 'dist/.sass-cache',
+					noCache: true,
+					sourcemap: 'none'
+				},
+				files: {
+					'dist/css/style.css': 'src/scss/style.scss'
 				}
 			} 
 		},
@@ -24,18 +36,42 @@ var mozjpeg = require('imagemin-mozjpeg');
 		    	options: {
 		        	browsers: ['last 5 versions', 'ie 8', 'ie 9']
 		      	},
-		      	src: 'src/css/style.css',
+		      	src: 'dist/css/style.css',
 		      	dest: 'dist/css/style.css'
 		    }
 		},
 
-		concat: {
-			dist: {
-				src: [
-					'src/js/generic/*.js', 
-					'src/js/core.js'
-				],
-				dest: 'src/js/core.concat.js',
+		combine_mq: {
+		    new_filename: {
+		        options: {
+		            beautify: false
+		        },
+		    	src: 'dist/css/style.css',
+		    	dest: 'dist/css/style.css'
+		    }
+		},
+
+		criticalcss: {
+	        custom: {
+	            options: {
+	                url: "http://localhost:3000",
+	                width: 1200,
+	                height: 900,
+	                outputfile: "dist/css/critical.css",
+	                filename: "dist/css/style.css", // Using path.resolve( path.join( ... ) ) is a good idea here
+	                buffer: 800*1024,
+	                ignoreConsole: false
+	            }
+	        }
+		},
+
+		cssmin: {
+			files: {
+				expand: true,
+				cwd: 'dist/css',
+				src: ['*.css', '!*.min.css'],
+				dest: 'dist/css',
+				ext: '.css'
 			}
 		},
 
@@ -49,8 +85,6 @@ var mozjpeg = require('imagemin-mozjpeg');
 	        },
 	        dist: {
 	            files: {
-	            // Dictionary of files
-		      	// Need to explicitly list all image files and destination
 	                'dist/img/**.svg': 'src/img/**.svg'
 	            }
 	        }
@@ -67,7 +101,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 		      	files: [{
 		        	expand: true,                   // Enable dynamic expansion
 		        	cwd: 'src/img/',                // Src matches are relative to this path
-		        	src: ['*.{png,jpg,gif}'],   	// Actual patterns to match
+		        	src: ['**.{png,jpg,gif}'],   	// Actual patterns to match
 		        	dest: 'dist/img/'               // Destination path prefix
 		    	}]
 		    }
@@ -96,7 +130,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 		            "domprefixes" : false,
 		            "cssclassprefix": ""
 		        },
-		        "uglify" : true,
+		        "uglify" : false,
 		        "tests" : [],
 		        "parseFiles" : true,
 		        "matchCommunityTests" : false,
@@ -104,55 +138,41 @@ var mozjpeg = require('imagemin-mozjpeg');
 		    }
 		},
 
-		combine_mq: {
-		    new_filename: {
-		        options: {
-		            beautify: false
-		        },
-		    	src: 'src/css/style.css',
-		    	dest: 'src/css/style.css'
-		    }
+
+		concat: {
+			dist: {
+				src: [
+					'src/js/generic/*.js', 
+					//'src/js/no-jquery/*.js', 
+					'src/js/core.js'
+				],
+				dest: 'dist/js/core.js',
+			},
+			modernizr: {
+				src: ['src/js/modernizr.dev.js'],
+				dest: 'src/js/generic/modernizr.custom.js',
+			}
 		},
 
-		criticalcss: {
-	        custom: {
-	            options: {
-	                url: "http://localhost:3000",
-	                width: 1200,
-	                height: 900,
-	                outputfile: "src/css/critical.css",
-	                filename: "src/css/style.css", // Using path.resolve( path.join( ... ) ) is a good idea here
-	                buffer: 800*1024,
-	                ignoreConsole: false
-	            }
-	        }
-		},
-
-
-		cssmin: {
-		  target: {
-		    files: [{
-		      expand: true,
-		      cwd: 'dist/css',
-		      src: ['*.css', '!*.min.css'],
-		      dest: 'dist/css',
-		      ext: '.css'
-		    }]
-		  }
-		},
 
 		uglify: {
-			build: {
-				src: 'src/js/core.concat.js',
+			dist: {
+				src: 'dist/js/core.js',
 				dest: 'dist/js/core.js'
 			}
 		},
 
 		copy: {
-			main: {
+			dist: {
 				expand: true,
 				cwd: 'src/',
-				src: ['*.{html,php}', 'js/shims/**', 'js/yepnope/**'], 
+				src: ['*.{html,php}', 'js/yepnope/**'], 
+				dest: 'dist/'
+			},
+			shims: {
+				expand: true,
+				cwd: 'src/',
+				src: ['js/shims/**'],
 				dest: 'dist/'
 			},
 		},
@@ -176,6 +196,11 @@ var mozjpeg = require('imagemin-mozjpeg');
 		},
 
 		delete_sync: {
+			dev: {
+				cwd: 'dist',
+				src: ['**', '!**/*.css', '!*/*/*.js', '!**/*.map'],
+				syncWith: 'src'
+			},
 			dist: {
 				cwd: 'dist',
 				src: ['**', '!**/*.css', '!**/*.js'],
@@ -183,49 +208,66 @@ var mozjpeg = require('imagemin-mozjpeg');
 			}
 		},
 
-
+		clean: {
+			reset: [
+				'dist'
+			]
+		},
 
 	    watch: {
-
-			delete_sync: {
-				files: ['src/**', 'src/**.{html,php,txt}'],
-				tasks: ['copy'],
-				options: {
-					spawn: false,
-					livereload: true,
-				},
-
-			},
-
-     		content: {
-				files: ['src/*.{html,php}'],
-				tasks: ['copy'],
-				options: {
-					spawn: false,
-					livereload: true,
-				},
-
-			},
-
-     		scripts: {
-				files: ['src/js/**.js'],
-				tasks: ['concat', 'uglify'],
-				options: {
-					spawn: false,
-					livereload: true,
-				},
-
-			},
 
      		sass: {
 	            files: ['src/scss/**.scss'],
 	            files: ['src/scss/**/*.scss'],
-	            tasks: ['sass', 'autoprefixer', 'criticalcss', 'cssmin'],
+	            tasks: ['sass:dev', 'autoprefixer'],
 	            options: {
 	                spawn: false,
 	                livereload: true,
 	            }
-	        }
+	        },
+
+     		scripts: {
+				files: ['src/js/**.js'],
+				tasks: ['concat:modernizr', 'concat:dist'],
+				options: {
+					spawn: true,
+					livereload: true,
+				}
+			},
+
+			delete_sync: {
+				files: ['src/**', 'src/**.{html,php,txt}'],
+				tasks: ['delete_sync:dev'],
+				options: {
+					spawn: false,
+					livereload: true,
+				}
+			},
+
+     		content: {
+				files: ['src/*.{html,php}'],
+				tasks: ['newer:copy:dist'],
+				options: {
+					spawn: false,
+					livereload: true,
+				}
+			},
+
+			assets: {
+				files: ['src/img/**.{png,jpg,gif}'],
+				tasks: ['newer:imagemin:dynamic'],
+				options: {
+					livereload: true,
+				},
+			},
+
+			svg: {
+				files: ['src/img/**.{svg}'],
+				tasks: ['svgmin:dist'],
+				options: {
+					livereload: true,
+				},
+			}
 
 	     },
 
@@ -248,12 +290,45 @@ var mozjpeg = require('imagemin-mozjpeg');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-delete-sync');
-
+	grunt.loadNpmTasks('grunt-newer');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 
 	//***** TASKS 
-	grunt.registerTask('default', ['browserSync', 'watch']);
-	grunt.registerTask('deploy', ['combine_mq', 'imagemin',  'modernizr', 'cssmin', 'copy', 'delete_sync', 'concat', 'uglify']);
+	grunt.registerTask('default', [
+		'commit', 
+		'copy:shims', 
+		'copy:dist', 
+		'sass:dev', 
+		'autoprefixer', 
+		'modernizr:dist', 
+		'concat:dist', 
+		'sass:dev', 
+		'autoprefixer', 
+		'delete_sync:dev', 
+		'newer:imagemin:dynaic', 
+		'svgmin:dist',
+		'browserSync', 
+		'watch'
+	]);
+
+	grunt.registerTask('deploy', [
+		'commit', 
+		'copy:shims', 
+		'copy:dist', 
+		'sass:dist', 
+		'autoprefixer',
+		'modernizr:dist', 
+		'concat:dist',  
+		'combine_mq', 
+		'cssmin', 
+		'uglify', 
+		'delete_sync:dist', 
+		'imagemin',
+		'svgmin:dist'
+	]);
+
+	grunt.registerTask('commit', ['clean:reset']);
 
   
 };
