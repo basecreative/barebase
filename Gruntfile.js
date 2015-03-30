@@ -11,7 +11,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 	    sass: {
 			dist: {
 				options: {
-					style: 'nested'
+					style: 'compressed'
 				},
 				files: {
 					'src/css/style.css': 'src/scss/style.scss'
@@ -25,15 +25,15 @@ var mozjpeg = require('imagemin-mozjpeg');
 		        	browsers: ['last 5 versions', 'ie 8', 'ie 9']
 		      	},
 		      	src: 'src/css/style.css',
-		      	dest: 'src/css/style.css'
+		      	dest: 'dist/css/style.css'
 		    }
 		},
 
 		concat: {
 			dist: {
 				src: [
-					['src/js/vendor/*.js', 'src/js/core.js'],  
-					'src/js/core.js'  
+					'src/js/generic/*.js', 
+					'src/js/core.js'
 				],
 				dest: 'src/js/core.concat.js',
 			}
@@ -42,7 +42,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 		svgmin: {
 	        options: {
 	            plugins: [{
-	                    removeViewBox: false
+	                    removeViewBox: true
 	                },{
 	                    removeUselessStrokeAndFill: false
 	            }]
@@ -51,7 +51,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 	            files: {
 	            // Dictionary of files
 		      	// Need to explicitly list all image files and destination
-	                'dist/img/image.svg': 'src/image.svg'
+	                'dist/img/**.svg': 'src/img/**.svg'
 	            }
 	        }
 	    },	
@@ -67,17 +67,16 @@ var mozjpeg = require('imagemin-mozjpeg');
 		      	files: [{
 		        	expand: true,                   // Enable dynamic expansion
 		        	cwd: 'src/img/',                // Src matches are relative to this path
-		        	src: ['**/*.{png,jpg,gif}'],   	// Actual patterns to match
+		        	src: ['*.{png,jpg,gif}'],   	// Actual patterns to match
 		        	dest: 'dist/img/'               // Destination path prefix
 		    	}]
 		    }
 		},
 
-
 		modernizr: {
 		    dist: {
 		        "devFile" : "src/js/modernizr.dev.js",
-		        "outputFile" : "src/js/vendor/modernizr.custom.js",
+		        "outputFile" : "src/js/generic/modernizr.custom.js",
 
 		        "extra" : {
 		            "shiv" : true,
@@ -108,7 +107,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 		combine_mq: {
 		    new_filename: {
 		        options: {
-		            beautify: true
+		            beautify: false
 		        },
 		    	src: 'src/css/style.css',
 		    	dest: 'src/css/style.css'
@@ -121,7 +120,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 	                url: "http://localhost:3000",
 	                width: 1200,
 	                height: 900,
-	                outputfile: "dist/css/critical.css",
+	                outputfile: "src/css/critical.css",
 	                filename: "src/css/style.css", // Using path.resolve( path.join( ... ) ) is a good idea here
 	                buffer: 800*1024,
 	                ignoreConsole: false
@@ -137,7 +136,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 		      cwd: 'dist/css',
 		      src: ['*.css', '!*.min.css'],
 		      dest: 'dist/css',
-		      ext: '.min.css'
+		      ext: '.css'
 		    }]
 		  }
 		},
@@ -145,16 +144,16 @@ var mozjpeg = require('imagemin-mozjpeg');
 		uglify: {
 			build: {
 				src: 'src/js/core.concat.js',
-				dest: 'dist/js/core.min.js'
+				dest: 'dist/js/core.js'
 			}
 		},
 
 		copy: {
 			main: {
-				files: [
-					// includes files within path and its sub-directories
-					{expand: true, src: ['**'], dest: 'dest/'},
-				],
+				expand: true,
+				cwd: 'src/',
+				src: ['*.{html,php}', 'js/shims/**', 'js/yepnope/**'], 
+				dest: 'dist/'
 			},
 		},
 
@@ -162,51 +161,71 @@ var mozjpeg = require('imagemin-mozjpeg');
 		  default_options: {
 		    bsFiles: {
 		      src: [
-		        "src/css/*.css",
-		        "src/*.html"
+		        "dist/css/**.css",
+		        "src/scss/**.scss",
+		        "dist/*.{html,php}"
 		      ]
 		    },
 		    options: {
 		      watchTask: true,
 		      server: {
-		        baseDir: "src"
+		        baseDir: "dist"
 		      }
 		    }
 		  }
+		},
+
+		delete_sync: {
+			dist: {
+				cwd: 'dist',
+				src: ['**', '!**/*.css', '!**/*.js'],
+				syncWith: 'src'
+			}
 		},
 
 
 
 	    watch: {
 
-	     		html: {
-					files: ['src/*.html', 'src/*/*.html'],
-					tasks: ['copy'],
-					options: {
-						spawn: false,
-						livereload: true,
-					},
-
+			delete_sync: {
+				files: ['src/**', 'src/**.{html,php,txt}'],
+				tasks: ['copy'],
+				options: {
+					spawn: false,
+					livereload: true,
 				},
 
-	     		scripts: {
-					files: ['src/js/*.js', 'src/js/*/*.js'],
-					tasks: ['concat', 'uglify'],
-					options: {
-						spawn: false,
-						livereload: true,
-					},
+			},
 
+     		content: {
+				files: ['src/*.{html,php}'],
+				tasks: ['copy'],
+				options: {
+					spawn: false,
+					livereload: true,
 				},
 
-	     		sass: {
-		            files: ['src/scss/*.scss'],
-		            tasks: ['sass', 'autoprefixer', 'criticalcss'],
-		            options: {
-		                spawn: false,
-		                livereload: true,
+			},
+
+     		scripts: {
+				files: ['src/js/**.js'],
+				tasks: ['concat', 'uglify'],
+				options: {
+					spawn: false,
+					livereload: true,
+				},
+
+			},
+
+     		sass: {
+	            files: ['src/scss/**.scss'],
+	            files: ['src/scss/**/*.scss'],
+	            tasks: ['sass', 'autoprefixer', 'criticalcss', 'cssmin'],
+	            options: {
+	                spawn: false,
+	                livereload: true,
 	            }
-	        } 
+	        }
 
 	     },
 
@@ -228,12 +247,13 @@ var mozjpeg = require('imagemin-mozjpeg');
 	grunt.loadNpmTasks('grunt-combine-mq');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-delete-sync');
 
 
 
 	//***** TASKS 
 	grunt.registerTask('default', ['browserSync', 'watch']);
-	grunt.registerTask('deploy', ['combine_mq', 'imagemin',  'modernizr', 'cssmin', 'concat', 'uglify']);
+	grunt.registerTask('deploy', ['combine_mq', 'imagemin',  'modernizr', 'cssmin', 'copy', 'delete_sync', 'concat', 'uglify']);
 
   
 };
