@@ -2,7 +2,7 @@
 Flat boilerplate we use on every build. Work in continuous progress.
 
 ## How to make it work
-You'll need node.js for Grunt and Ruby for Sass. To install any other dependencies, use
+You'll need to have [node.js](https://nodejs.org/download/) and [Sass](http://sass-lang.com/install) installed to make this work. To install all the node dependencies, use this on the project folder (should have a package.json):
 
 ```
 npm install
