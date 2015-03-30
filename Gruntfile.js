@@ -306,7 +306,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 		'sass:dev', 
 		'autoprefixer', 
 		'delete_sync:dev', 
-		'newer:imagemin:dynaic', 
+		'newer:imagemin:dynamic', 
 		'svgmin:dist',
 		'browserSync', 
 		'watch'
