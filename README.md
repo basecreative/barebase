@@ -19,8 +19,8 @@ grunt deploy
 This will optimise and minify everything for production.
 
 
-## What is included?
-Barebase includes some core markup and styles besides some useful libraries.
+## What's in the box?
+Barebase includes some core markup, grunt setup and styles besides some useful libraries.
 
 ### Sass
 - [Harry Robert's file structure](http://cssguidelin.es/): Specificity matters!
