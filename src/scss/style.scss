@@ -1,25 +1,7 @@
 
-
-*{
-	&:before,
-	&:after{
-		box-sizing: border-box;
-	}
-}
-
-/* 
-
-Modernizr stuff needed for production
-Write it down as you use stuff.
-
-- HTML5 Shiv
-- SVG
-- CSS Transforms
-
-*/
-
-
 @import "default";
+@import "generic/mq";
+@import "generic/ext";
 @import "mixins";
 
 @import "generic/normalize";
