@@ -7,7 +7,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 
 	    pkg: grunt.file.readJSON('package.json'),
 	     
-	     // ***** CONFIG
+	    // ***** CONFIG
 	    sass: {
 			dev: {
 				options: {
@@ -15,7 +15,8 @@ var mozjpeg = require('imagemin-mozjpeg');
 					cacheLocation: 'dist/.sass-cache'
 				},
 				files: {
-					'dist/css/style.css': 'src/scss/style.scss'
+					'dist/css/style.css': 'src/scss/style.scss',
+					//'dist/css/editor_style.css': 'src/scss/editor_style.scss'
 				}
 			},
 			dist: {
@@ -26,7 +27,8 @@ var mozjpeg = require('imagemin-mozjpeg');
 					sourcemap: 'none'
 				},
 				files: {
-					'dist/css/style.css': 'src/scss/style.scss'
+					'dist/css/style.css': 'src/scss/style.scss',
+					//'dist/css/editor_style.css': 'src/scss/editor_style.scss'
 				}
 			} 
 		},
@@ -228,7 +230,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 
      		scripts: {
 				files: ['src/js/**.js'],
-				tasks: ['concat:modernizr', 'concat:dist'],
+				tasks: ['concat:dist'],
 				options: {
 					spawn: true,
 					livereload: true,
@@ -301,7 +303,7 @@ var mozjpeg = require('imagemin-mozjpeg');
 		'copy:dist', 
 		'sass:dev', 
 		'autoprefixer', 
-		'modernizr:dist', 
+		'concat:modernizr',
 		'concat:dist', 
 		'sass:dev', 
 		'autoprefixer', 
@@ -324,11 +326,10 @@ var mozjpeg = require('imagemin-mozjpeg');
 		'cssmin', 
 		'uglify', 
 		'delete_sync:dist', 
-		'imagemin',
+		'newer:imagemin:dynamic',
 		'svgmin:dist'
 	]);
 
 	grunt.registerTask('commit', ['clean:reset']);
-
   
 };
