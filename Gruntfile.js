@@ -86,9 +86,14 @@ var mozjpeg = require('imagemin-mozjpeg');
 	            }]
 	        },
 	        dist: {
-	            files: {
-	                'dist/img/**.svg': 'src/img/**.svg'
-	            }
+	            files: [{
+	                expand: true,
+				    cwd: 'src/img/',
+				    src: ['*.svg'],
+				    dest: 'dist/img/', 
+				    ext: '.svg',
+				    extDot: 'first'
+	            }]
 	        }
 	    },	
 
