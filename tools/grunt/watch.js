@@ -1,0 +1,67 @@
+module.exports = {
+    // 'src-wms-plugins': {
+    //     files: ['src/plugins/**'],
+    //     tasks: [
+    //         'sync:build-src-wms-plugins'
+    //     ]
+    // },
+    // 'src-wms-themes': {
+    //     files: ['src/themes/**'],
+    //     tasks: [
+    //         'sync:build-src-wms-themes'
+    //     ]
+    // },
+    // 'src-wms-scripts': {
+    //     files: ['src/scripts/**'],
+    //     tasks: [
+    //         'sync:build-src-wms-scripts'
+    //     ]
+   //  // },
+   // 'src-themes': {
+   //     files: ['src/themes/**']
+   //     tasks: ['newer:copy:build-src-wms-themes']
+   // },
+
+   sass: {
+       files: ['<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.scss %>/**.scss', '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.scss %>/**/*.scss'],
+       tasks: ['sass:dev', 'autoprefixer'],
+       options: {
+           spawn: false,
+           livereload: true,
+       }
+   },
+
+   scripts: {
+       files: ['<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.js %>/**.js'],
+       tasks: ['concat:dist'],
+       options: {
+           spawn: true,
+           livereload: true,
+       }
+   },
+
+   content: {
+       files: ['<%= paths.src.flats %>/<%= grunt.config("design") %>/**.{html,php}'],
+       tasks: ['newer:copy:dist'],
+       options: {
+           spawn: false,
+           livereload: true,
+       }
+   },
+
+   assets: {
+       files: ['<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.img %>/**.{png,jpg,gif}'],
+       tasks: ['newer:imagemin:dynamic'],
+       options: {
+           livereload: true,
+       },
+   },
+
+   svg: {
+       files: ['<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.img %>/**.{svg}'],
+       tasks: ['svgmin:dist'],
+       options: {
+           livereload: true,
+       },
+   }
+};
