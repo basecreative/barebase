@@ -1,6 +1,5 @@
 module.exports = {
     'default': [
-        'remove:jason'
     ],
     'dev': [
         'copy:shims',
@@ -13,6 +12,7 @@ module.exports = {
         'concat:dist',
         'newer:imagemin:dynamic',
         'svgmin:dist',
+        'cssmin:dev',
         'copy:flat_dist',
         'browserSync',
         'watch'
@@ -25,6 +25,7 @@ module.exports = {
         'modernizr:dist',
         'concat:dist',
         'uglify',
+        'cssmin:dist',
         'newer:imagemin:dynamic',
         'svgmin:dist'
     ],
