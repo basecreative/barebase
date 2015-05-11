@@ -11,6 +11,10 @@ module.exports = function(grunt, options) {
 
 		var design_paths = [
 			options.paths.src.assets + '/' + grunt.config("design"),
+			options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.scss,
+			options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.img,
+			options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.js,
+			options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.fonts,
 			options.paths.src.flats + '/' + grunt.config("design"),
 			options.paths.src.themes + '/' + grunt.config("design"),
 			options.paths.build.flat.root + '/' + grunt.config("design"),

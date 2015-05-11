@@ -3,8 +3,7 @@
 
 module.exports = function(grunt) {
 	// require it at the top and pass in the grunt instance
-    require('time-grunt')(grunt);
-    var design = 'design';
+    //require('time-grunt')(grunt);
 
     var path = require('path');
 
@@ -13,7 +12,6 @@ module.exports = function(grunt) {
 
         // auto grunt.initConfig
         init: true,
-
 
         // data passed into config.  Can use with <%= test %>
         data: {

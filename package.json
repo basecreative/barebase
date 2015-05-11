@@ -1,19 +1,19 @@
 {
   "name": "Barebase",
   "version": "1.0.0",
-  "description": "Demo",
+  "description": "Command line engine for flat and theme development with grunt, npm and bower.",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "/"
   },
   "repository": {
     "type": "git",
-    "url": "/"
+    "url": "https://github.com/basecreative/barebase.git"
   },
   "keywords": [
     "/"
   ],
-  "author": "@jcianfrone / @jaicab",
+  "author": "Base Creative Dev Team",
   "license": "ISC",
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -30,7 +30,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-criticalcss": "^0.5.0",
     "grunt-delete-sync": "0.0.2",
-    "grunt-mkdir": "^0.1.2",
     "grunt-modernizr": "^0.6.0",
     "grunt-newer": "^1.1.0",
     "grunt-svgmin": "^2.0.1",
