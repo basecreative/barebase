@@ -14,7 +14,7 @@ module.exports = {
 
     scripts: {
       files: ['<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.js %>/**.js'],
-      tasks: ['concat:dist', 'copy:flat_dist'],
+      tasks: ['concat:dist:<%= grunt.config("design") %>'],
       options: {
         spawn: true,
         livereload: true,

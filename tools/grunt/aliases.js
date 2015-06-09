@@ -9,7 +9,7 @@ module.exports = {
         'sass:dev',
         'autoprefixer',
         'concat:modernizr',
-        'concat:dist',
+        'concat:dist:<%= grunt.config("design") %>',
         'newer:imagemin:dynamic',
         'svgmin:dist',
         'cssmin:dev',
