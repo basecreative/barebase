@@ -13,7 +13,6 @@ module.exports = function(grunt) {
         // auto grunt.initConfig
         init: true,
 
-        // data passed into config.  Can use with <%= test %>
         data: {
             paths: {
                 build: {
