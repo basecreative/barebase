@@ -9,8 +9,6 @@ module.exports = function(grunt, options) {
 
    	grunt.registerTask('new', function(){
 
-   		grunt.task.run('bower:install');
-
 		var design_paths = [
 			options.paths.src.assets + '/' + grunt.config("design"),
 			options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.scss,
@@ -23,25 +21,9 @@ module.exports = function(grunt, options) {
 			options.paths.build.dist.root + '/' + grunt.config("design")
 		];
 
-		// Create folders
 		design_paths.forEach(function(path){
 			if(!grunt.file.isDir(path)) grunt.file.mkdir(path);
 		});
-
-		// Check Sass
-		if(!grunt.file.isFile(options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.scss + '/style.scss')){
-			grunt.task.run('copy:sass_init');
-		}
-
-		// Check JavaScript
-		if(!grunt.file.isFile(options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.js + '/core.js')){
-			grunt.task.run('copy:js_init');
-		}
-
-		// Check HTML
-		if(!grunt.file.isFile(options.paths.build.flat.root + '/' + grunt.config("design") + '/index.html')){
-			grunt.task.run('copy:flat_init');
-		}
 
    	});
 
