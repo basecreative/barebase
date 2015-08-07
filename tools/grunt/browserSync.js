@@ -10,7 +10,7 @@ module.exports = {
         options: {
             watchTask: true,
             server: {
-                baseDir: '<%= paths.build.flat.root %>/'
+                baseDir: '<%= paths.build.flat.root %>/<%= grunt.config("design") %>'
             }
         }
     }

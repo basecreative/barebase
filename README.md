@@ -26,18 +26,16 @@ Barebase includes some core markup, grunt setup and styles besides some useful l
 - [Harry Robert's file structure](http://cssguidelin.es/): Specificity matters!
 - [normalize.css](http://necolas.github.io/normalize.css/): CSS reset
 - [sass-mq](https://github.com/sass-mq/sass-mq): Fantastic media query mixin from theguardian
-- [sass-vary](http://jaicab.com/sass-vary/): Create module variations in no time
-- [sass-ext](http://jaicab.com/sass-ext/): Sass' @extend on a budget
+- [ext()](http://jaicab.com/ext/): Sass' @extend on a budget
 
 ### JavaScript
 - [Modernizr](http://modernizr.com/) (mandatory)
 - [picturefill](https://github.com/scottjehl/picturefill) (mandatory)
-- [Respond.js](https://github.com/scottjehl/Respond): A fast & lightweight polyfill for min/max-width CSS3 Media Queries
 - [Swipe.js](https://github.com/thebird/Swipe): Vanilla JS touch slider
 - [Webshims](http://afarkas.github.io/webshim/demos/) for HTML5 form validation support
 
 ## Grunt tasks
-All our grunt tasks can be found on out [dependencies file](https://github.com/basecreative/barebase/blob/master/package.json).
+All out grunt tasks can be found on out [dependencies file](https://github.com/basecreative/barebase/blob/master/package.json).
 
 ## License
 barebase is curated by The Base Creative team and is released under the MIT license

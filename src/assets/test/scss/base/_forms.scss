@@ -8,7 +8,7 @@ form{
 
 // GENERIC
 %rounded-grey-box{
-	border: $input-border-width/2 solid #000;
+	border: $input-border-width/2 solid #fff;
 	padding: .7em;
 	background: $color-bg;
 	color: $color-text;
@@ -114,17 +114,4 @@ button,
 	}
 }
 
-
-input[type="checkbox"]{
-	-webkit-appearance: checkbox;
-	display: inline-block;
-	width: auto;
-	margin: 0 .1em;
-}
-input[type="radio"]{
-	-webkit-appearance: radio;
-	display: inline-block;
-	width: auto;
-	margin: 0 .1em;
-}
 
