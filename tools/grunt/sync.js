@@ -1,41 +1,35 @@
 module.exports = {
-    'build-src-wms-plugins': {
+    sass_init: {
         files: [
             {
-                cwd: '<%= paths.src.plugins %>',
-                src: ['**'],
-                dest: '<%= paths.build.dist.webroot %>/<%= paths.build.dist.plugins %>'
+                expand: true,
+                cwd: 'bower_components/barebase-sass',
+                src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
+                dest: '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.scss %>'
             }
         ],
-//        verbose: true,
-//        pretend: true, // Don't do any disk operations - just write log
-//        ignoreInDest: "**/*.js", // Never remove js files from destination
-        updateAndDelete: true // Remove all files from dest that are not found in src
+        updateAndDelete: false
     },
-    'build-src-wms-themes': {
+    js_init: {
         files: [
             {
-                cwd: '<%= paths.src.themes %>',
-                src: ['**'],
-                dest: '<%= paths.build.dist.webroot %>/<%= paths.build.dist.themes %>'
+                expand: true,
+                cwd: 'bower_components/barebase-js',
+                src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
+                dest: '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.js %>'
             }
         ],
-//        verbose: true,
-//        pretend: true, // Don't do any disk operations - just write log
-//        ignoreInDest: "**/*.js", // Never remove js files from destination
-        updateAndDelete: true // Remove all files from dest that are not found in src
+        updateAndDelete: false
     },
-    'build-src-wms-scripts': {
+    flat_init: {
         files: [
             {
-                cwd: '<%= paths.src.scripts %>',
-                src: ['**'],
-                dest: '<%= paths.build.dist.webroot %>/<%= paths.build.dist.scripts %>'
+                expand: true,
+                cwd: 'bower_components/barebase-flat',
+                src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
+                dest: '<%= paths.src.flats %>/<%= grunt.config("design") %>'
             }
         ],
-//        verbose: true,
-//        pretend: true, // Don't do any disk operations - just write log
-//        ignoreInDest: "**/*.js", // Never remove js files from destination
-        updateAndDelete: true // Remove all files from dest that are not found in src
-    }
+        updateAndDelete: false
+    },
 };
