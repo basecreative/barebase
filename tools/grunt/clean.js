@@ -2,9 +2,6 @@ module.exports = {
     lib: [
         'lib/*'
     ],
-    bower: [
-        'bower_components'
-    ],
     reset: [
         '<%= paths.build.flat.root %>/<%= grunt.config("design") %>',
         '<%= paths.build.dist.root %>/<%= grunt.config("design") %>'

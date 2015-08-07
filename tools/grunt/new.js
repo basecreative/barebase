@@ -28,7 +28,20 @@ module.exports = function(grunt, options) {
 			if(!grunt.file.isDir(path)) grunt.file.mkdir(path);
 		});
 
-		grunt.task.run('sync:sass_init', 'sync:js_init', 'sync:flat_init');
+		// Check Sass
+		if(!grunt.file.isFile(options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.scss + '/style.scss')){
+			grunt.task.run('copy:sass_init');
+		}
+
+		// Check JavaScript
+		if(!grunt.file.isFile(options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.js + '/core.js')){
+			grunt.task.run('copy:js_init');
+		}
+
+		// Check HTML
+		if(!grunt.file.isFile(options.paths.build.flat.root + '/' + grunt.config("design") + '/index.html')){
+			grunt.task.run('copy:flat_init');
+		}
 
    	});
 
