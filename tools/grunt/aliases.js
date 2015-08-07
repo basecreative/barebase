@@ -1,6 +1,5 @@
 module.exports = {
-    'default': [
-    ],
+    'default': [],
     'dev': [
         'copy:shims',
         'copy:flat',

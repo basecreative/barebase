@@ -12,6 +12,7 @@ module.exports = function(grunt, options) {
    		grunt.task.run('bower:install');
 
 		var design_paths = [
+			'src',
 			options.paths.src.assets + '/' + grunt.config("design"),
 			options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.scss,
 			options.paths.src.assets + '/' + grunt.config("design") + '/' + options.paths.assets.img,
