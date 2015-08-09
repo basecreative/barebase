@@ -4,8 +4,9 @@ module.exports = {
     		beautify: true,
     	},
     	files: {
-	        src: '<%= paths.build.flat.root %>/<%= grunt.config("design") %>/<%= paths.assets.js %>/core.js',
-        	dest: '<%= paths.build.flat.root %>/<%= grunt.config("design") %>/<%= paths.assets.js %>/core.js'
+            '<%= paths.build.flat.root %>/<%= grunt.task.current.args[0] %>/<%= paths.assets.js %>/core.js': [
+                '<%= paths.build.flat.root %>/<%= grunt.task.current.args[0] %>/<%= paths.assets.js %>/core.js'
+            ]
         }
     },
     dist: {
@@ -15,8 +16,9 @@ module.exports = {
     		}
     	},
     	files: {
-	        src: '<%= paths.build.flat.root %>/<%= grunt.config("design") %>/<%= paths.assets.js %>/core.js',
-        	dest: '<%= paths.build.flat.root %>/<%= grunt.config("design") %>/<%= paths.assets.js %>/core.js'
+	        '<%= paths.build.dist.root %>/<%= grunt.task.current.args[0] %>/<%= paths.assets.js %>/core.js': [
+                '<%= paths.build.dist.root %>/<%= grunt.task.current.args[0] %>/<%= paths.assets.js %>/core.js'
+            ]
         }
     }
 };

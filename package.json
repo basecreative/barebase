@@ -1,6 +1,6 @@
 {
   "name": "Barebase",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Command line engine for flat and theme development with grunt, npm and bower.",
   "main": "Gruntfile.js",
   "scripts": {

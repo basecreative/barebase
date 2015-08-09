@@ -28,24 +28,5 @@ module.exports = {
     cwd: '<%= paths.src.assets %>/<%= grunt.config("design") %>/',
     src: ['<%= paths.assets.js %>/shims/**'],
     dest: '<%= paths.build.flat.root %>/<%= grunt.config("design") %>/'
-  },
-  
-  sass_init: {
-    expand: true,
-    cwd: 'bower_components/barebase-sass',
-    src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
-    dest: '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.scss %>'
-  },
-  js_init: {
-    expand: true,
-    cwd: 'bower_components/barebase-js',
-    src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
-    dest: '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.js %>'
-  },
-  flat_init: {
-    expand: true,
-    cwd: 'bower_components/barebase-flat',
-    src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
-    dest: '<%= paths.src.flats %>/<%= grunt.config("design") %>'
-  },
+  }
 };
