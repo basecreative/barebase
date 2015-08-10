@@ -5,7 +5,7 @@ module.exports = function(grunt, options) {
                 {
                     expand: true,
                     cwd: 'node_modules/barebase-sass',
-                    src: ['**/**.*', '**.*', '!LICENSE', '!README.md', '!package.json'],
+                    src: ['**/**.*', '**.*', '!LICENSE', '!.gitignore', '!README.md', '!package.json'],
                     dest: '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.scss %>'
                 }
             ],
@@ -16,7 +16,7 @@ module.exports = function(grunt, options) {
                 {
                     expand: true,
                     cwd: 'node_modules/barebase-js',
-                    src: ['**/**.*', '**.*', '!LICENSE', '!README.md', '!package.json'],
+                    src: ['**/**.*', '**.*', '!LICENSE', '!.gitignore', '!README.md', '!package.json'],
                     dest: '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.js %>'
                 }
             ],
@@ -27,7 +27,7 @@ module.exports = function(grunt, options) {
                 {
                     expand: true,
                     cwd: 'node_modules/barebase-flat',
-                    src: ['**/**.*', '**.*', '!LICENSE', '!README.md', '!package.json'],
+                    src: ['**/**.*', '**.*', '!LICENSE', '!.gitignore', '!README.md', '!package.json'],
                     dest: '<%= paths.src.flats %>/<%= grunt.config("design") %>'
                 }
             ],
