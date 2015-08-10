@@ -51,10 +51,14 @@ module.exports = {
     },
 
     svg: {
-      files: ['<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.img %>/**.{svg}'],
-      tasks: ['svgmin:dist', 'copy:flat_dist'],
+      files: [
+        '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.img %>/**.svg',
+        '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.img %>/**/*.svg'
+      ],
+      tasks: ['svgmin:dist:<%= grunt.config("design") %>', 'copy:flat_dist'],
       options: {
-      livereload: true,
-    },
-  }
+        livereload: true,
+      },
+    }
+    
 };
