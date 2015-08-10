@@ -1,6 +1,6 @@
 {
-  "name": "Barebase",
-  "version": "0.1",
+  "name": "barebase",
+  "version": "2.3.0",
   "homepage": "https://github.com/basecreative/barebase",
   "authors": [
     "Jaime Caballero <me@jaicab.com>"
@@ -8,14 +8,6 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "barebase-sass": "basecreative/barebase-sass",
-    "barebase-js": "basecreative/barebase-js",
-    "barebase-flat": "basecreative/barebase-flat"
-  }
+    "node_modules"
+  ]
 }

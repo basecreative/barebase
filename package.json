@@ -1,7 +1,7 @@
 {
-  "name": "Barebase",
-  "version": "2.2.0",
-  "description": "Command line engine for flat and theme development with grunt, npm and bower.",
+  "name": "barebase",
+  "version": "2.3.0",
+  "description": "Command line engine for flat and theme development powered with grunt.",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "/"
@@ -11,10 +11,16 @@
     "url": "https://github.com/basecreative/barebase.git"
   },
   "keywords": [
-    "/"
+    "barebase",
+    "basecreative",
+    "frontend"
   ],
   "author": "Base Creative Dev Team",
-  "license": "ISC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basecreative/barebase/issues"
+  },
+  "homepage": "https://github.com/basecreative/barebase",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^2.2.0",
