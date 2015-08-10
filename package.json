@@ -18,7 +18,6 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^2.2.0",
-    "grunt-bower-task": "^0.4.0",
     "grunt-browser-sync": "^2.0.0",
     "grunt-combine-mq": "^0.6.0",
     "grunt-contrib-clean": "^0.6.0",
@@ -39,6 +38,9 @@
     "load-grunt-config": "^0.17.1"
   },
   "dependencies": {
+    "basecreative-flat": "git://github.com/basecreative/barebase-flat.git",
+    "basecreative-sass": "git://github.com/basecreative/barebase-sass.git",
+    "basecreative-js": "git://github.com/basecreative/barebase-js.git",
     "imagemin": "^3.1.0",
     "imagemin-mozjpeg": "^4.0.0"
   }

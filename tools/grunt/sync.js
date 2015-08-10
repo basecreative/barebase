@@ -4,7 +4,7 @@ module.exports = function(grunt, options) {
             files: [
                 {
                     expand: true,
-                    cwd: 'bower_components/barebase-sass',
+                    cwd: 'node_modules/barebase-sass',
                     src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
                     dest: '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.scss %>'
                 }
@@ -15,7 +15,7 @@ module.exports = function(grunt, options) {
             files: [
                 {
                     expand: true,
-                    cwd: 'bower_components/barebase-js',
+                    cwd: 'node_modules/barebase-js',
                     src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
                     dest: '<%= paths.src.assets %>/<%= grunt.config("design") %>/<%= paths.assets.js %>'
                 }
@@ -26,7 +26,7 @@ module.exports = function(grunt, options) {
             files: [
                 {
                     expand: true,
-                    cwd: 'bower_components/barebase-flat',
+                    cwd: 'node_modules/barebase-flat',
                     src: ['**/**.*', '**.*', '!LICENSE', '!README.md'],
                     dest: '<%= paths.src.flats %>/<%= grunt.config("design") %>'
                 }
