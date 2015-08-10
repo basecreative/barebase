@@ -22,7 +22,7 @@ module.exports = function(grunt, options) {
             grunt.task.run('clean:reset', 'new');
 
             if(mode === "dev") grunt.task.run('dev');
-            //if(mode === "deploy") grunt.task.run('build'); 
+            if(mode === "deploy") grunt.task.run('build'); 
    		}
    	});
 

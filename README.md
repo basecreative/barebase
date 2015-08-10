@@ -1,20 +1,17 @@
 # barebase
-Flat boilerplate we use on every build. Work in continuous progress.
+Flat and theme frontend engine we use on every build. Work in continuous progress.
 
 ## How to make it work
-You'll need to have [node.js](https://nodejs.org/download/) and [Sass](http://sass-lang.com/install) installed to make this work. To install all the node dependencies, use this on the project folder (should have a package.json):
+You'll need to have [node.js](https://nodejs.org/download/) and [Sass](http://sass-lang.com/install) installed to make this work. To install barebase and all its dependencies, just go to the project folder and do:
 
 ```
-npm install
+npm install basecreative/barebase
 ```
 
-Once it's done you won't need to do it again in the same project. To start developing, use `grunt`.
-Then work on the `src` folder and all your compiled files will go to `dist`.
-
-When you're ready to deploy, use: 
-```
-grunt deploy
-```
+Once it's done you won't need to do it again in the same project. Your project folder is the one called barebase, inside `node_modules`.
+ 
+To start developing, use `grunt work:dev:project_name`. Then work on the `src` folder and all your compiled files will go to `build`.
+When you're ready to deploy, use `grunt work:build:project_name`.
 
 This will optimise and minify everything for production.
 
