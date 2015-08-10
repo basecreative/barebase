@@ -7,7 +7,7 @@ module.exports = {
         'copy:assets',
         'sass:dev',
         'autoprefixer',
-        'concat:modernizr',
+        'concat:modernizr:<%= grunt.config("design") %>',
         'concat:dist:<%= grunt.config("design") %>',
         'newer:imagemin:dynamic',
         'svgmin:dist',
