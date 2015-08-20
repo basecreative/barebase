@@ -16,9 +16,11 @@ module.exports = {
         'browserSync',
         'watch'
     ],
-    'build': [
+    'deploy': [
         'copy:shims',
+        'copy:flat',
         'copy:dist',
+        'copy:assets',
         'sass:dist',
         'autoprefixer',
         'modernizr:dist',
@@ -26,7 +28,7 @@ module.exports = {
         'uglify',
         'cssmin:dist',
         'newer:imagemin:dynamic',
-        'svgmin:dist'
+        'svgmin:dist:<%= grunt.config("design") %>'
     ],
     'commit': ['clean:reset']
 };
