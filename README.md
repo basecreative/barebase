@@ -15,6 +15,29 @@ When you're ready to deploy, use `grunt work:build:project_name`.
 
 This will optimise and minify everything for production.
 
+## Updating barebase
+To update the npm modules for a project, you will need npm-check-updates. To install it globally:
+
+```
+npm install -g npm-check-updates
+```
+
+Then run `ncu -u` to update your `package.json` file. Then to update your modules, run this on the project:
+
+```
+npm update
+npm upgrade
+```
+
+And now all your modules are up to date!
+
+## Updating node
+Run these commands to update node and npm.
+```
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+```
 
 ## What's in the box?
 Barebase includes some core markup, grunt setup and styles besides some useful libraries.
