@@ -19,7 +19,7 @@ module.exports = function(grunt, options) {
             grunt.fail.fatal("I need a project name: Give me one with grunt work:dev:design_name");
          }else{
             grunt.config.set('design', name);
-            grunt.task.run('clean:reset', 'new:<%= grunt.config("design") %>');
+            grunt.task.run('clean:reset', ('new:' + grunt.config("design")));
 
             if(mode === "dev") grunt.task.run('dev');
             if(mode === "deploy") grunt.task.run('build'); 

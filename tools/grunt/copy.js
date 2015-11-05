@@ -2,7 +2,7 @@ module.exports = {
   flat: {
     expand: true,
     cwd: '<%= paths.src.flats %>/<%= grunt.config("design") %>/',
-    src: ['**.{html,php}'],
+    src: ['**.*'],
     dest: '<%= paths.build.flat.root %>/<%= grunt.config("design") %>/'
   },
   dist: {
